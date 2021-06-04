@@ -10,9 +10,9 @@ let game = {
 
     // Card Deck
     deck:[],
+
     // Get Cards Method
     getCards: function () {
-
         for (let i= 2; i< 15; i++){
            let img = document.createElement('img')
            img.setAttribute('src', `./images/card${i}.png`) 
@@ -21,7 +21,6 @@ let game = {
         }
     },
 
-
     // Shuffle Method
     shuffle: function (){
         this.deck.sort(() => Math.random() - 0.5)
@@ -29,7 +28,7 @@ let game = {
 
     // Deal Method
     deal: function () {
-        if (game.deck.length < 2) {
+        if (game.deck.length <= 1) {
             game.getCards()
             game.shuffle()
         }
@@ -37,13 +36,14 @@ let game = {
         firstCard = game.deck.shift()
         secondCard = game.deck.shift()
         //console.log(firstCard.getAttribute('value'))
-        playerCard.setAttribute('src', firstCard.src)
-        cpuCard.setAttribute('src', secondCard.src)
+        playerCard.setAttribute('src', firstCard.getAttribute('src'))
+        cpuCard.setAttribute('src', secondCard.getAttribute('src'))
         
         playerCard.setAttribute('value',firstCard.getAttribute('value'))
         cpuCard.setAttribute('value',secondCard.getAttribute('value'))
         game.checkScore()
     },
+
     // Check Scores Method
     checkScore: function(){
         playerCardValue= parseInt(playerCard.getAttribute('value'))
@@ -67,7 +67,6 @@ console.log(game.deck)
 /* Part 1 Code Here */
 // Create container element
 let container = document.createElement('div')
-
 container.setAttribute('class','container')
 
 // Append to DOM
